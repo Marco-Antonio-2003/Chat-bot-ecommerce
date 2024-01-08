@@ -1,0 +1,81 @@
+openai.ChatCompletion.create(
+  model = "gpt-3.5-turbo",
+    messages = [
+      {
+       "role" : "system",
+       "content" : "Gere nomes de produtos fictícios sem descrição de acordo com a requisição do usuário."
+      },
+      {
+       "role" : "user",
+       "content" : "Gere 5 produtos"
+      }
+    ]
+)
+
+2- 
+from openai import OpenAI
+
+client = OpenAI()
+
+3- 
+client.chat.completions.create(
+  model = "gpt-3.5-turbo",
+    messages = [
+      {
+       "role" : "system",
+       "content" : "Gere nomes de produtos fictícios sem descrição de acordo com a requisição do usuário."
+      },
+      {
+       "role" : "user",
+       "content" : "Gere 5 produtos"
+      }
+    ]
+)
+
+4- 
+Se precisarmos tratar a resposta, basta atribuir o retorno dessa chamada a uma variável como abaixo:
+
+resposta = client.chat.completions.create(
+  model = "gpt-3.5-turbo",
+    messages = [
+      {
+       "role" : "system",
+       "content" : "Gere nomes de produtos fictícios sem descrição de acordo com a requisição do usuário."
+      },
+      {
+       "role" : "user",
+       "content" : "Gere 5 produtos"
+      }
+    ]
+)
+
+print(resposta.choices[0].message.content)
+
+5- 
+Para trabalhar com a chave da API podemos usar esse próprio objeto client e atribuir a chave antes de fazer qualquer chamada à API.
+
+client.api_key = "<aqui vem a sua chave da API>"
+
+6- 
+from openai import OpenAI
+import dotenv
+
+dotenv.load_dotenv()
+client = OpenAI()
+
+resposta = client.chat.completions.create(
+    model="gpt-3.5-turbo-16k",
+    messages = [
+      {
+       "role" : "system",
+       "content" : "Gere nomes de produtos fictícios sem descrição de acordo com a requisição do usuário."
+      },
+      {
+       "role" : "user",
+       "content" : "Gere 5 produtos"
+      }
+    ]
+)
+
+print(resposta.choices[0].message.content)
+
